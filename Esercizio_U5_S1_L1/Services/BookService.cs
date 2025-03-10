@@ -11,7 +11,7 @@ namespace Esercizio_U5_S1_L1.Services {
             _context = context;
         }
 
-        public async Task<BookViewModel> GetAllProductsAsync() {
+        public async Task<BookViewModel> GetAllBooksAsync() {
             try {
                 var bookList = new BookViewModel();
 

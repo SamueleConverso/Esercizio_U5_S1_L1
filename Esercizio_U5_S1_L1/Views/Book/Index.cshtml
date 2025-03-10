@@ -1,0 +1,19 @@
+﻿@using Esercizio_U5_S1_L1.Models
+@using Esercizio_U5_S1_L1.ViewModels
+@model BookViewModel
+
+@{
+	ViewData["Title"] = "Libreria";
+}
+
+@if (Model.Books != null && Model.Books.Any())
+{
+    @foreach (var product in Model.Books)
+    {
+        <div>@product.Title</div>
+    }
+}
+else
+{
+    <p class="text-danger">Nessun libro trovato</p>
+}
