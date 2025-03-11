@@ -6,10 +6,28 @@
 
 @if (Model.Books != null && Model.Books.Any())
 {
-    @foreach (var product in Model.Books)
-    {
-        <div>@product.Title</div>
-    }
+	<div class="container d-flex justify-content-center">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Titolo</th>
+				<th>Autore</th>
+				<th>Genere</th>
+				<th>Altro</th>
+			</tr>
+		</thead>
+		@foreach (var product in Model.Books)
+		{
+			<tr>
+				<td>@product.Title</td>
+				<td>@product.Autore</td>
+				<td>@product.Genere</td>
+				<td><a asp-controller="Book" asp-action="Details" asp-route-id="@product.Id">Dettagli</a></td>
+			</tr>
+		}
+	</table>
+	</div>
+   
 }
 else
 {

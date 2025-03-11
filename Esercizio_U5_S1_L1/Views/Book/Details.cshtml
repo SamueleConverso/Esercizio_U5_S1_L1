@@ -1,0 +1,62 @@
+﻿@model BookDetailsViewModel
+
+@{
+	ViewData["Title"] = "Dettagli";
+}
+
+@if (Model != null)
+{
+	<div class="container d-flex justify-content-center">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>
+						Id
+					</th>
+					<th>
+						Titolo
+					</th>
+					<th>
+						Autore
+					</th>
+					<th>
+						Genere
+					</th>
+					<th>
+						Disponibilità
+					</th>
+					<th>
+						Azioni amministrative
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						@Model.Id
+					</td>
+					<td>
+						@Model.Title
+					</td>
+					<td>
+						@Model.Autore
+					</td>
+					<td>
+						@Model.Genere
+					</td>
+					<td>
+						@(Model.Disponibilità == true ? "Disponibile" : "Non disponibile")
+					</td>
+					<td>
+						<a asp-controller="Book" asp-action="Edit" asp-route-id="@Model.Id">Modifica</a>
+						<a asp-controller="Book" asp-action="Delete" asp-route-id="@Model.Id">Elimina</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+}
+else
+{
+	<p class="text-danger">Nessun libro trovato.</p>
+}
