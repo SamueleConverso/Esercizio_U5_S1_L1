@@ -7,9 +7,11 @@ namespace Esercizio_U5_S1_L1.Controllers {
     public class BookController : Controller {
 
         private readonly BookService _bookService;
+        private readonly GenereService _genereService;
 
-        public BookController(BookService bookService) {
+        public BookController(BookService bookService, GenereService genereService) {
             _bookService = bookService;
+            _genereService = genereService;
         }
 
         [HttpGet("library")]
@@ -29,10 +31,11 @@ namespace Esercizio_U5_S1_L1.Controllers {
             }
 
             var bookDetailsViewModel = new BookDetailsViewModel() {
-                Id = book.Id,
+                IdBook = book.IdBook,
                 Title = book.Title,
                 Autore = book.Autore,
-                Genere = book.Genere,
+                IdGenere = book.IdGenere,
+                TipoGenere = book.Genere.TipoGenere,
                 Disponibilità = book.Disponibilità
             };
 
@@ -52,7 +55,9 @@ namespace Esercizio_U5_S1_L1.Controllers {
         }
 
         [HttpGet("add")]
-        public IActionResult Add() {
+        public async Task<IActionResult> Add() {
+            var listGeneri = await _genereService.GetAllGeneriAsync();
+            ViewBag.Generi = listGeneri.Generi;
             return View();
         }
 
@@ -73,7 +78,11 @@ namespace Esercizio_U5_S1_L1.Controllers {
             return RedirectToAction("Index");
         }
 
+        [HttpGet("edit/{id:guid}")]
         public async Task<IActionResult> Edit(Guid id) {
+
+            var listGeneri = await _genereService.GetAllGeneriAsync();
+            ViewBag.Generi = listGeneri.Generi;
 
             var book = await _bookService.GetBookByIdAsync(id);
 
@@ -83,10 +92,10 @@ namespace Esercizio_U5_S1_L1.Controllers {
             }
 
             var editBookViewModel = new EditBookViewModel() {
-                Id = book.Id,
+                IdBook = book.IdBook,
                 Title = book.Title,
                 Autore = book.Autore,
-                Genere = book.Genere,
+                IdGenere = book.IdGenere,
                 Disponibilità = book.Disponibilità
             };
 
@@ -94,8 +103,10 @@ namespace Esercizio_U5_S1_L1.Controllers {
         }
 
 
-        [HttpPost]
-        public async Task<IActionResult> Edit(EditBookViewModel editBookViewModel) {
+        [HttpPost("edit/{id:guid}")]
+        public async Task<IActionResult> Edit(Guid id, EditBookViewModel editBookViewModel) {
+
+            editBookViewModel.IdBook = id;
 
             if (!ModelState.IsValid) {
                 TempData["Error"] = "Errore durante la modifica del libro!";

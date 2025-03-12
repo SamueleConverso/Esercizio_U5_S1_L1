@@ -24,7 +24,7 @@ namespace Esercizio_U5_S1_L1.Migrations
 
             modelBuilder.Entity("Esercizio_U5_S1_L1.Models.Book", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("IdBook")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -36,19 +36,48 @@ namespace Esercizio_U5_S1_L1.Migrations
                     b.Property<bool>("Disponibilità")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Genere")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                    b.Property<int>("IdGenere")
+                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.HasKey("Id");
+                    b.HasKey("IdBook");
+
+                    b.HasIndex("IdGenere");
 
                     b.ToTable("Books");
+                });
+
+            modelBuilder.Entity("Esercizio_U5_S1_L1.Models.Genere", b =>
+                {
+                    b.Property<int>("IdGenere")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdGenere"));
+
+                    b.Property<string>("TipoGenere")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("IdGenere");
+
+                    b.ToTable("Generi");
+                });
+
+            modelBuilder.Entity("Esercizio_U5_S1_L1.Models.Book", b =>
+                {
+                    b.HasOne("Esercizio_U5_S1_L1.Models.Genere", "Genere")
+                        .WithMany()
+                        .HasForeignKey("IdGenere")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Genere");
                 });
 #pragma warning restore 612, 618
         }

@@ -15,6 +15,7 @@ builder.Services.AddDbContext<Esercizio_U5_S1_L1_EfCore>(options =>
 );
 
 builder.Services.AddScoped<BookService>();
+builder.Services.AddScoped<GenereService>();
 //
 
 var app = builder.Build();

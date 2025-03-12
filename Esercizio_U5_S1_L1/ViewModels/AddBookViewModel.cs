@@ -18,8 +18,8 @@ namespace Esercizio_U5_S1_L1.ViewModels {
 
         [Display(Name = "Genere")]
         [Required(ErrorMessage = "Il genere è obbligatorio!")]
-        [StringLength(100, ErrorMessage = "La lunghezza deve essere compresa tra {2} e {1}.", MinimumLength = 5)]
-        public required string Genere {
+        //[StringLength(100, ErrorMessage = "La lunghezza deve essere compresa tra {2} e {1}.", MinimumLength = 5)]
+        public required int IdGenere {
             get; set;
         }
 

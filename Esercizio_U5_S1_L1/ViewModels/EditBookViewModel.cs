@@ -1,6 +1,6 @@
 ﻿namespace Esercizio_U5_S1_L1.ViewModels {
     public class EditBookViewModel {
-        public required Guid Id {
+        public required Guid IdBook {
             get; set;
         }
 
@@ -15,7 +15,7 @@
         }
 
 
-        public required string Genere {
+        public required int IdGenere {
             get; set;
         }
 

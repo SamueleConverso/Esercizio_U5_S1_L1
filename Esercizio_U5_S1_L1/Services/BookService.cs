@@ -29,7 +29,7 @@ namespace Esercizio_U5_S1_L1.Services {
             try {
                 var bookList = new BookViewModel();
 
-                bookList.Books = await _context.Books.ToListAsync();
+                bookList.Books = await _context.Books.Include(b => b.Genere).ToListAsync();
 
                 return bookList;
             } catch {
@@ -39,7 +39,7 @@ namespace Esercizio_U5_S1_L1.Services {
 
         public async Task<Book> GetBookByIdAsync(Guid id) {
 
-            var book = await _context.Books.FindAsync(id);
+            var book = await _context.Books.Include(b => b.Genere).FirstOrDefaultAsync(b => b.IdBook == id);
 
             if (book == null) {
                 return null;
@@ -64,10 +64,10 @@ namespace Esercizio_U5_S1_L1.Services {
         public async Task<bool> AddBookAsync(AddBookViewModel addBookViewModel) {
 
             var book = new Book() {
-                Id = Guid.NewGuid(),
+                IdBook = Guid.NewGuid(),
                 Title = addBookViewModel.Title,
                 Autore = addBookViewModel.Autore,
-                Genere = addBookViewModel.Genere,
+                IdGenere = addBookViewModel.IdGenere,
                 Disponibilità = addBookViewModel.Disponibilità
             };
 
@@ -78,7 +78,7 @@ namespace Esercizio_U5_S1_L1.Services {
 
         public async Task<bool> UpdateBookAsync(EditBookViewModel editBookViewModel) {
 
-            var book = await _context.Books.FindAsync(editBookViewModel.Id);
+            var book = await _context.Books.FindAsync(editBookViewModel.IdBook);
 
             if (book == null) {
                 return false;
@@ -86,7 +86,7 @@ namespace Esercizio_U5_S1_L1.Services {
 
             book.Title = editBookViewModel.Title;
             book.Autore = editBookViewModel.Autore;
-            book.Genere = editBookViewModel.Genere;
+            book.IdGenere = editBookViewModel.IdGenere;
             book.Disponibilità = editBookViewModel.Disponibilità;
 
             return await SaveAsync();

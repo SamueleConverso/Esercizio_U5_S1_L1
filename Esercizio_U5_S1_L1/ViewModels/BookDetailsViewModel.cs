@@ -3,7 +3,7 @@
 namespace Esercizio_U5_S1_L1.ViewModels {
     public class BookDetailsViewModel {
 
-        public Guid Id {
+        public Guid IdBook {
             get; set;
         }
 
@@ -18,10 +18,13 @@ namespace Esercizio_U5_S1_L1.ViewModels {
         }
 
 
-        public string? Genere {
+        public int IdGenere {
             get; set;
         }
 
+        public string TipoGenere {
+            get; set;
+        }
 
         public bool Disponibilità {
             get; set;

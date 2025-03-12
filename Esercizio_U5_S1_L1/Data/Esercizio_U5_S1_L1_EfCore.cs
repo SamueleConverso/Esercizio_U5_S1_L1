@@ -9,5 +9,9 @@ namespace Esercizio_U5_S1_L1.Data {
         public DbSet<Book> Books {
             get; set;
         }
+
+        public DbSet<Genere> Generi {
+            get; set;
+        }
     }
 }

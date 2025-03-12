@@ -33,7 +33,7 @@
 			<tbody>
 				<tr>
 					<td>
-						@Model.Id
+						@Model.IdBook
 					</td>
 					<td>
 						@Model.Title
@@ -42,14 +42,14 @@
 						@Model.Autore
 					</td>
 					<td>
-						@Model.Genere
+						@Model.TipoGenere
 					</td>
 					<td>
 						@(Model.Disponibilità == true ? "Disponibile" : "Non disponibile")
 					</td>
 					<td>
-						<a asp-controller="Book" asp-action="Edit" asp-route-id="@Model.Id">Modifica</a>
-						<a asp-controller="Book" asp-action="Delete" asp-route-id="@Model.Id">Elimina</a>
+						<a asp-controller="Book" asp-action="Edit" asp-route-id="@Model.IdBook">Modifica</a>
+						<a asp-controller="Book" asp-action="Delete" asp-route-id="@Model.IdBook">Elimina</a>
 					</td>
 				</tr>
 			</tbody>

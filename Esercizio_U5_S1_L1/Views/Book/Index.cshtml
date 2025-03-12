@@ -21,8 +21,8 @@
 			<tr>
 				<td>@product.Title</td>
 				<td>@product.Autore</td>
-				<td>@product.Genere</td>
-				<td><a asp-controller="Book" asp-action="Details" asp-route-id="@product.Id">Dettagli</a></td>
+				<td>@product.Genere.TipoGenere</td>
+				<td><a asp-controller="Book" asp-action="Details" asp-route-id="@product.IdBook">Dettagli</a></td>
 			</tr>
 		}
 	</table>

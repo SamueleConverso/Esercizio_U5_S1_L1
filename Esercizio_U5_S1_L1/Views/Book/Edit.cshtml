@@ -4,7 +4,7 @@
 	ViewData["Title"] = "Modifica libro";
 }
 
-<form method="post" asp-controller="Book" asp-action="Edit">
+<form method="post" asp-controller="Book" asp-action="Edit" asp-route-id="@Model.IdBook">
 	<div class="form-group">
 
 		<label asp-for="Title" class="form-label"></label>
@@ -15,9 +15,18 @@
 		<span asp-validation-for="Autore" class="text-danger"></span>
 		<input type="text" class="form-control" asp-for="Autore" />
 
-		<label asp-for="Genere" class="form-label"></label>
-		<span asp-validation-for="Genere" class="text-danger"></span>
-		<input type="text" class="form-control" asp-for="Genere" />
+		@* <label asp-for="IdGenere" class="form-label"></label>
+		<span asp-validation-for="IdGenere" class="text-danger"></span>
+		<input type="text" class="form-control" asp-for="IdGenere" /> *@
+
+		<label asp-for="IdGenere" class="form-label"></label>
+		<span asp-validation-for="IdGenere" class="text-danger"></span>
+		<select type="text" class="form-control" asp-for="IdGenere">
+			@foreach (var genere in ViewBag.Generi)
+			{
+				<option value="@genere.IdGenere">@genere.TipoGenere</option>
+			}
+		</select>
 
 		@* <label for="Disponibilità">Disponibilità</label>
 	<input type="checkbox" id="Disponibilità" name="Disponibilità" asp-for="Disponibilità" /> *@
