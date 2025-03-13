@@ -1,0 +1,39 @@
+﻿@model PrestitoViewModel
+
+@{
+	ViewData["Title"] = "Prestito";
+}
+
+@if (Model.Prestiti != null && Model.Prestiti.Any())
+{
+	<div class="container d-flex justify-content-center">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Titolo</th>
+					<th>Autore</th>
+					<th>Genere</th>
+					<th>Data prestito</th>
+					<th>Data restituzione</th>
+					<th>Altro</th>
+				</tr>
+			</thead>
+			@foreach (var prestito in Model.Prestiti)
+			{
+				<tr>
+					<td>@prestito.Book.Title</td>
+					<td>@prestito.Book.Autore</td>
+					<td>@prestito.Book.Genere.TipoGenere</td>
+					<td>@prestito.DataPrestito</td>
+					<td>@prestito.DataRestituzione</td>
+					<td><a asp-controller="Prestito" asp-action="EndBook" asp-route-idPrestito="@prestito.IdPrestito" asp-route-idBook="@prestito.Book.IdBook">Restituisci libro</a></td>
+				</tr>
+			}
+		</table>
+	</div>
+
+}
+else
+{
+	<p class="text-danger">Nessun prestito trovato</p>
+}

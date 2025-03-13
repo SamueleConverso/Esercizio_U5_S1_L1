@@ -13,5 +13,19 @@ namespace Esercizio_U5_S1_L1.Data {
         public DbSet<Genere> Generi {
             get; set;
         }
+
+        public DbSet<Prestito> Prestiti {
+            get; set;
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder) {
+            modelBuilder.Entity<Prestito>()
+                .Property(a => a.DataPrestito)
+                .HasDefaultValueSql("GETDATE()");
+
+            modelBuilder.Entity<Prestito>()
+               .Property(a => a.DataRestituzione)
+               .HasComputedColumnSql("DATEADD(day, 10, DataPrestito)");
+        }
     }
 }

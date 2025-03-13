@@ -4,7 +4,7 @@
 	ViewData["Title"] = "Aggiungi libro";
 }
 
-<form method="post" asp-controller="Book" asp-action="Add">
+<form method="post" asp-controller="Book" asp-action="Add" enctype="multipart/form-data">
 	<div class="form-group">
 	
 	<label asp-for="Title" class="form-label"></label>
@@ -33,6 +33,10 @@
 		<input class="form-check-input" type="checkbox" asp-for="Disponibilità">	
 	</div>
 
+			<label class="form-label" asp-for="Image"></label>
+			@* <span asp-validation-for="Image" class="text-danger"></span> *@
+			<input type="file" asp-for="Image">
+		
 	</div>
 	<button type="submit" class="btn btn-primary">Aggiungi</button>
 </form>

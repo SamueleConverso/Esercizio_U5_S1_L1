@@ -10,19 +10,29 @@
 	<table class="table">
 		<thead>
 			<tr>
+				<th>Copertina</th>
 				<th>Titolo</th>
 				<th>Autore</th>
 				<th>Genere</th>
 				<th>Altro</th>
+				<th>Prestito</th>
 			</tr>
 		</thead>
 		@foreach (var product in Model.Books)
 		{
 			<tr>
+				<td><img src="@product.ImagePath" alt="..." style="width: 100px"/></td>
 				<td>@product.Title</td>
 				<td>@product.Autore</td>
 				<td>@product.Genere.TipoGenere</td>
 				<td><a asp-controller="Book" asp-action="Details" asp-route-id="@product.IdBook">Dettagli</a></td>
+				@if(product.Disponibilità) {
+						<td><a asp-controller="Prestito" asp-action="TakeBook" asp-route-id="@product.IdBook">Prendi in prestito</a></td>
+					}
+					else
+					{
+						<td>Non disponibile</td>
+					}
 			</tr>
 		}
 	</table>

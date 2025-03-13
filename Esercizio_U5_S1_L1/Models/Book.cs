@@ -35,5 +35,14 @@ namespace Esercizio_U5_S1_L1.Models {
         public required bool Disponibilità {
             get; set;
         }
+
+        [NotMapped]
+        public ICollection<Prestito> Prestiti {
+            get; set;
+        }
+
+        public string? ImagePath {
+            get; set;
+        }
     }
 }

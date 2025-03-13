@@ -28,5 +28,10 @@ namespace Esercizio_U5_S1_L1.ViewModels {
         public required bool Disponibilità {
             get; set;
         }
+
+        [Display(Name = "Carica immagine")]
+        public IFormFile? Image {
+            get; set;
+        }
     }
 }

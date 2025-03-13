@@ -96,7 +96,8 @@ namespace Esercizio_U5_S1_L1.Controllers {
                 Title = book.Title,
                 Autore = book.Autore,
                 IdGenere = book.IdGenere,
-                Disponibilità = book.Disponibilità
+                Disponibilità = book.Disponibilità,
+                ImagePath = book.ImagePath
             };
 
             return View(editBookViewModel);
